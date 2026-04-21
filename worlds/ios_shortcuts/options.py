@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 
-from Options import Choice
+from Options import OptionGroup, PerGameCommonOptions, Toggle
 
 class IPhone(Toggle):
     """

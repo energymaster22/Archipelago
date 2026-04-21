@@ -15,8 +15,8 @@ class IosShortcutsWorld(World):
 
     web = web_world.IosShortcutsWebWorld()
 
-    options_dataclass = iosshortcuts_options.iosshortcuts_options
-    options: iosshortcuts_options.iosshortcuts_options
+    options_dataclass = iosshortcuts_options.IosShortcutsOptions
+    options: iosshortcuts_options.IosShortcutsOptions
 
     location_name_to_id = locations.LOCATION_NAME_TO_ID
     item_name_to_id = items.ITEM_NAME_TO_ID
