@@ -15,6 +15,10 @@ def create_all_regions(world: IosShortcutsWorld) -> None:
     home_screen = Region("Home Screen", world.player, world.multiworld)
     shortcuts_app = Region("Shortcuts App", world.player, world.multiworld)
 
+    regions = [home_screen, shortcuts_app]
+
+    world.multiworld.regions += regions
+
 def connect_regions(world: IosShortcutsWorld) -> None:
     home_screen = world.get_region("Home Screen")
     shortcuts_app = world.get_region("Shortcuts App")

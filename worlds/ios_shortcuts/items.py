@@ -27,6 +27,8 @@ def get_random_filler_item_name(world: IosShortcutsWorld) -> str:
 def create_item_with_correct_classification(world: IosShortcutsWorld, name: str) -> IosShortcutsItem:
     classification = DEFAULT_ITEM_CLASSIFICATIONS[name]
 
+    return IosShortcutsItem(name, classification, ITEM_NAME_TO_ID[name], world.player)
+
 def create_all_items(world: IosShortcutsWorld) -> None:
     itempool: list[Item] = [
         world.create_item("Shortcut Activation")

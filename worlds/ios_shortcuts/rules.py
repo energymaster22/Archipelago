@@ -22,4 +22,4 @@ def set_all_location_rules(world: IosShortcutsWorld) -> None:
     world.set_rule(locked_shortcut, can_run_locked_shortcut)
 
 def set_completion_condition(world: IosShortcutsWorld) -> None:
-    world.set_completion_rule(Has("Locked Shortcut"))
+    world.set_completion_rule(Has("Shortcut Activation"))
