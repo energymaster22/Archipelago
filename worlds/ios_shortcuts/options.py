@@ -4,10 +4,10 @@ from Options import OptionGroup, PerGameCommonOptions, Toggle
 
 class IPhone(Toggle):
     """
-    Do you actually have an Iphone?
+    Do you actually have an iPhone?
     """
 
-    display_name = "Iphone?"
+    display_name = "iPhone?"
 
 @dataclass
 class IosShortcutsOptions(PerGameCommonOptions):
