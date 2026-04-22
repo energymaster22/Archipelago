@@ -656,7 +656,7 @@ class Flask(App):
 
         cli.show_server_banner(self.debug, self.name)
 
-        from werkzeug.serving import run_simple
+        from ..werkzeug.serving import run_simple
 
         try:
             run_simple(t.cast(str, host), port, self, **options)
