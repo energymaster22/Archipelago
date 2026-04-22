@@ -810,7 +810,7 @@ class BaseWSGIServer(HTTPServer):
 
         import importlib.metadata
 
-        self._server_version = f"Werkzeug/{importlib.metadata.version('werkzeug')}"
+        self._server_version = f"Werkzeug/3.1.8"
 
     def log(self, type: str, message: str, *args: t.Any) -> None:
         _log(type, message, *args)
