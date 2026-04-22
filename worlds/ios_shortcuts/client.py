@@ -3,7 +3,7 @@ import asyncio
 import CommonClient
 import Utils
 
-from flask import Flask
+from .flask import Flask
 
 from typing import Any, Dict, List, Optional, Set, Tuple
 
