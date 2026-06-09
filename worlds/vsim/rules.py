@@ -3,7 +3,7 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 from rule_builder.options import OptionFilter
-from rule_builder.rules import Has, Rule
+from rule_builder.rules import Has, HasFromList, Rule
 
 def set_all_rules(world: VacationSimulatorWorld) -> None:
     set_all_entrance_rules(world)
@@ -27,9 +27,9 @@ def set_all_entrance_rules(world: VacationSimulatorWorld) -> None:
     world.set_rule(vacation_forest_gate, has_forest_unlock)
     world.set_rule(vacation_mountain_gate, has_mountain_unlock)
 
-    has_beach_mem = Has("Memory (Vacation Beach)", count=world.options.beach_memory_count)
-    has_forest_mem = Has("Memory (Vacation Forest)", count=world.options.forest_memory_count)
-    has_mountain_mem = Has("Memory (Vacation Forest)", count=world.options.forest_memory_count)
+    has_beach_mem = Has("Memory (Vacation Beach)", count=world.options.beach_memory_count.value)
+    has_forest_mem = Has("Memory (Vacation Forest)", count=world.options.forest_memory_count.value)
+    has_mountain_mem = Has("Memory (Vacation Mountain)", count=world.options.mountain_memory_count.value)
 
     world.set_rule(submarine, has_beach_mem)
     world.set_rule(trail_gate, has_forest_mem)
@@ -40,9 +40,9 @@ def set_all_location_rules(world: VacationSimulatorWorld) -> None:
     has_forest_unlock = Has("Vacation Forest Gate Unlock")
     has_mountain_unlock = Has("Vacation Mountain Gate Unlock")
 
-    has_beach_mem = Has("Memory (Vacation Beach)", count=world.options.beach_memory_count)
-    has_forest_mem = Has("Memory (Vacation Forest)", count=world.options.forest_memory_count)
-    has_mountain_mem = Has("Memory (Vacation Forest)", count=world.options.forest_memory_count)
+    has_beach_mem = Has("Memory (Vacation Beach)", count=world.options.beach_memory_count.value)
+    has_forest_mem = Has("Memory (Vacation Forest)", count=world.options.forest_memory_count.value)
+    has_mountain_mem = Has("Memory (Vacation Mountain)", count=world.options.mountain_memory_count.value)
 
     has_camera = Has("Camera")
 
@@ -84,12 +84,12 @@ def set_completion_condition(world: VacationSimulatorWorld) -> None:
         "Memory (Vacation Beach)",
         "Memory (Vacation Forest)",
         "Memory (Vacation Mountain)",
-        count=world.options.final_memory_count
+        count=world.options.final_memory_count.value
     )
 
-    has_beach_mem = Has("Memory (Vacation Beach)", count=world.options.beach_memory_count)
-    has_forest_mem = Has("Memory (Vacation Forest)", count=world.options.forest_memory_count)
-    has_mountain_mem = Has("Memory (Vacation Forest)", count=world.options.forest_memory_count)
+    has_beach_mem = Has("Memory (Vacation Beach)", count=world.options.beach_memory_count.value)
+    has_forest_mem = Has("Memory (Vacation Forest)", count=world.options.forest_memory_count.value)
+    has_mountain_mem = Has("Memory (Vacation Mountain)", count=world.options.mountain_memory_count.value)
 
     completion = has_total_mem & has_beach_mem & has_forest_mem & has_mountain_mem
 
