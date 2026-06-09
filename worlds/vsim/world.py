@@ -46,40 +46,41 @@ class VacationSimulatorWorld(World):
         #everything in this game is static, it really should
         #not need all of this in slot data.
         
-        #Note: The code for fill_slot_data is fully lifted
-        #from the original world by chandler05, but I intend
+        #Note: The code for fill_slot_data is mostly lifted
+        #from the original world by chandler05, with minot modifications
+        #to make it work in the new world, but I intend
         #on replacing it with my own code when the above is done.
         
-        #locations: Dict[int, Any] = {}
+        locations: Dict[int, Any] = {}
 
-        #multiworld = self.multiworld
-        #player = self.player
-        #options = self.options
+        multiworld = self.multiworld
+        player = self.player
+        options = self.options
 
-        #for loc in multiworld.get_filled_locations(player):
-        #    if loc.item.code == None:
-        #        continue
-        #    else:
-        #        data = {
-        #            "ap_id": loc.address,
-        #            "item_name": loc.item.name,
-        #            "player_name": multiworld.player_name[loc.item.player],
-        #            "type": int(loc.item.classification),
-        #            "in_game_id": str(location_name_to_game_id[loc.name]),
-        #        }
+        for loc in multiworld.get_filled_locations(player):
+            if loc.item.code == None:
+                continue
+            else:
+                data = {
+                    "ap_id": loc.address,
+                    "item_name": loc.item.name,
+                    "player_name": multiworld.player_name[loc.item.player],
+                    "type": int(loc.item.classification),
+                    "in_game_id": str(location_name_to_game_id(str(loc))),
+                }
 
-        #        locations[location_name_to_game_id[loc.name]] = data
+                locations[location_name_to_game_id(str(loc))] = data
 
-        #settings = {
-            #"beachGate": int(options.beach_memory_count),
-            #"forestGate": int(options.forest_memory_count),
-            #"mountainGate": int(options.mountain_memory_count),
-            #"finalGate": int(options.final_memory_count),
-        #}
+        settings = {
+            "beachGate": int(options.beach_memory_count),
+            "forestGate": int(options.forest_memory_count),
+            "mountainGate": int(options.mountain_memory_count),
+            "finalGate": int(options.final_memory_count),
+        }
     
         slot_data = {
-        #    "locations": locations,
-        #    "settings": settings,
+            "locations": locations,
+            "settings": settings,
         }
     
         return slot_data
