@@ -86,23 +86,39 @@ def create_all_items(world: VacationSimulatorWorld) -> None:
     for x in range(len(remainingmemlist)):
         itempool.append(world.create_item_filler_version(remainingmemlist[x]))
 
-    
+    bigitems = [
+        "Vacation Beach Gate Unlock",
+        "Vacation Forest Gate Unlock",
+        "Vacation Mountain Gate Unlock",
+        "Camera",
+    ]
+
     if world.options.starting_gate == 0:
         world.push_precollected(world.create_item("Vacation Beach Gate Unlock"))
         itempool.append(world.create_item("Vacation Forest Gate Unlock"))
         itempool.append(world.create_item("Vacation Mountain Gate Unlock"))
+        bigitems.remove("Vacation Beach Gate Unlock")
 
     if world.options.starting_gate == 1:
         itempool.append(world.create_item("Vacation Beach Gate Unlock"))
         world.push_precollected(world.create_item("Vacation Forest Gate Unlock"))
         itempool.append(world.create_item("Vacation Mountain Gate Unlock"))
+        bigitems.remove("Vacation Forest Gate Unlock")
     
     if world.options.starting_gate == 2:
         itempool.append(world.create_item("Vacation Beach Gate Unlock"))
         itempool.append(world.create_item("Vacation Forest Gate Unlock"))
         world.push_precollected(world.create_item("Vacation Mountain Gate Unlock"))
+        bigitems.remove("Vacation Mountain Gate Unlock")
     
     itempool.append(world.create_item("Camera"))
+
+    #commented code below is for forcing a "Big Item" early,
+    #will decide later if I want to add this back as an option
+    
+    #earlyitem = world.random.choice(bigitems)
+    #world.multiworld.early_items[world.player][earlyitem] = 1
+
 
     number_of_items = len(itempool)
 
