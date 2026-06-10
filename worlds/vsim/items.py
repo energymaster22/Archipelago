@@ -37,16 +37,55 @@ def create_item_with_correct_classification(world: VacationSimulatorWorld, name:
 
     return VacationSimulatorItem(name, classification, ITEM_NAME_TO_ID[name], world.player)
 
+def create_item_with_filler_classification(world: VacationSimulatorWorld, name: str) -> VacationSimulatorItem:
+    
+    return VacationSimulatorItem(name, ItemClassification.filler, ITEM_NAME_TO_ID[name], world.player)
+
 def create_all_items(world: VacationSimulatorWorld) -> None:
 
     itempool = []
 
+    remainingmemlist = []
+
     for x in range(22):
-        itempool.append(world.create_item("Memory (Vacation Beach)"))
+        if x < (world.options.beach_memory_count.value):
+            itempool.append(world.create_item("Memory (Vacation Beach)"))
+        else:
+            remainingbeachmem = x
+            for y in range(22 - x):
+                remainingmemlist.append("Memory (Vacation Beach)")
+            break
     for x in range(23):
-        itempool.append(world.create_item("Memory (Vacation Forest)"))
+        if x < (world.options.forest_memory_count.value):
+            itempool.append(world.create_item("Memory (Vacation Forest)"))
+        else:
+            remainingforestmem = x
+            for y in range(23 - x):
+                remainingmemlist.append("Memory (Vacation Forest)")
+            break
     for x in range(24):
-        itempool.append(world.create_item("Memory (Vacation Mountain)"))
+        if x < (world.options.mountain_memory_count):
+            itempool.append(world.create_item("Memory (Vacation Mountain)"))
+        else:
+            remainingmountianmem = x
+            for y in range(24 - x):
+                remainingmemlist.append("Memory (Vacation Mountain)")
+            break
+    
+    totalsubmemreq = world.options.beach_memory_count.value
+    totalsubmemreq += world.options.forest_memory_count.value
+    totalsubmemreq += world.options.mountain_memory_count.value
+    
+    extramemrequired = (world.options.final_memory_count.value - totalsubmemreq)
+    
+    for x in range(extramemrequired):
+        index = world.random.randint(0, (len(remainingmemlist) - 1))
+        itempool.append(world.create_item(remainingmemlist[index]))
+        remainingmemlist.pop(index)
+
+    for x in range(len(remainingmemlist)):
+        itempool.append(world.create_item_filler_version(remainingmemlist[x]))
+
     
     if world.options.starting_gate == 0:
         world.push_precollected(world.create_item("Vacation Beach Gate Unlock"))

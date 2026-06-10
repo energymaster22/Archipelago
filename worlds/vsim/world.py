@@ -37,6 +37,9 @@ class VacationSimulatorWorld(World):
     def create_item(self, name: str) -> items.VacationSimulatorItem:
         return items.create_item_with_correct_classification(self, name)
 
+    def create_item_filler_version(self, name: str) -> items.VacationSimulatorItem:
+        return items.create_item_with_filler_classification(self, name)
+
     def get_filler_item_name(self) -> str:
         return items.get_random_filler_item_name(self)
 
@@ -66,10 +69,10 @@ class VacationSimulatorWorld(World):
                     "item_name": loc.item.name,
                     "player_name": multiworld.player_name[loc.item.player],
                     "type": int(loc.item.classification),
-                    "in_game_id": str(location_name_to_game_id(str(loc))),
+                    "in_game_id": str(location_name_to_game_id(str(loc.name))),
                 }
 
-                locations[location_name_to_game_id(str(loc))] = data
+                locations[location_name_to_game_id(str(loc.name))] = data
 
         settings = {
             "beachGate": int(options.beach_memory_count),
