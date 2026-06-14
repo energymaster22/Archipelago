@@ -113,11 +113,9 @@ def create_all_items(world: VacationSimulatorWorld) -> None:
     
     itempool.append(world.create_item("Camera"))
 
-    #commented code below is for forcing a "Big Item" early,
-    #will decide later if I want to add this back as an option
-    
-    #earlyitem = world.random.choice(bigitems)
-    #world.multiworld.early_items[world.player][earlyitem] = 1
+    if world.options.early_big_item:
+        earlyitem = world.random.choice(bigitems)
+        world.multiworld.early_items[world.player][earlyitem] = 1
 
 
     number_of_items = len(itempool)
