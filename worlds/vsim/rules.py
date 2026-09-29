@@ -3,7 +3,7 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 from rule_builder.options import OptionFilter
-from rule_builder.rules import Has, HasFromList, Rule
+from rule_builder.rules import Has, HasAll, HasFromList, Rule
 
 def set_all_rules(world: VacationSimulatorWorld) -> None:
     set_all_entrance_rules(world)
@@ -90,7 +90,8 @@ def set_completion_condition(world: VacationSimulatorWorld) -> None:
     has_beach_mem = Has("Memory (Vacation Beach)", count=world.options.beach_memory_count.value)
     has_forest_mem = Has("Memory (Vacation Forest)", count=world.options.forest_memory_count.value)
     has_mountain_mem = Has("Memory (Vacation Mountain)", count=world.options.mountain_memory_count.value)
+    has_all_gates = HasAll("Vacation Beach Gate Unlock", "Vacation Forest Gate Unlock", "Vacation Mountain Gate Unlock")
 
-    completion = has_total_mem & has_beach_mem & has_forest_mem & has_mountain_mem
+    completion = has_total_mem & has_beach_mem & has_forest_mem & has_mountain_mem & has_all_gates
 
     world.set_completion_rule(completion)
